@@ -1,0 +1,506 @@
+{
+  "id": "BV6Uc2mD",
+  "name": "Parcel intake",
+  "summary": "Intake asks catalog for a route code, then publishes a dispatch job.",
+  "schemaVersion": 1,
+  "lifecycle": "draft",
+  "createdAt": "2026-11-08T11:45:53.439Z",
+  "predecessor": null,
+  "predecessorRevision": "ccf2c2b184c33371ae917f67d9b291b1cad56a2d0a7d65f0d557f1adb5ce6a10",
+  "baseline": "d559ea68f5dbe3f171422eed852af2fdeb7a1cc4",
+  "changes": [
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#USqYWEmm",
+      "kind": "module",
+      "value": {
+        "order": 10,
+        "name": "Intake",
+        "kind": "service",
+        "responsibility": "Accepts parcel handoffs over HTTP",
+        "description": "The only public HTTP entry. It asks Catalog for a route code, then publishes one dispatch job.",
+        "binding": {
+          "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+          "path": "deploy/kubernetes/intake.yaml",
+          "symbol": "Deployment/intake"
+        },
+        "schemaVersion": 1,
+        "id": "rpmPjlm0#USqYWEmm"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#USqYWEmm",
+      "placement": {
+        "holder": "rpmPjlm0"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#nNCDn0VT",
+      "kind": "module",
+      "value": {
+        "order": 20,
+        "name": "Accept parcel",
+        "kind": "route",
+        "responsibility": "POST /parcels",
+        "description": "Reads CATALOG_URL and DISPATCH_JOBS_URL from the process environment and calls those addresses.",
+        "binding": {
+          "repo": "github.com/miklschmidt/archboard-relay-example",
+          "path": "services/intake/src/accept.ts",
+          "symbol": "acceptParcel"
+        },
+        "schemaVersion": 1,
+        "id": "rpmPjlm0#nNCDn0VT"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#nNCDn0VT",
+      "placement": {
+        "holder": "rpmPjlm0#USqYWEmm"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#ty0qoZOh",
+      "kind": "relationship",
+      "value": {
+        "order": 10,
+        "kind": "http",
+        "label": "GET route code",
+        "emphasis": "hero",
+        "id": "rpmPjlm0#ty0qoZOh",
+        "to": "rpmPjlm0#3p6C8puJ"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#ty0qoZOh",
+      "placement": {
+        "holder": "rpmPjlm0#nNCDn0VT"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#g1Qgyytk",
+      "kind": "relationship",
+      "value": {
+        "order": 20,
+        "kind": "queue",
+        "label": "publish dispatch job",
+        "emphasis": "hero",
+        "id": "rpmPjlm0#g1Qgyytk",
+        "to": "rpmPjlm0#lIzB214r"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#g1Qgyytk",
+      "placement": {
+        "holder": "rpmPjlm0#nNCDn0VT"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#luVochY7",
+      "kind": "module",
+      "value": {
+        "order": 30,
+        "name": "Catalog",
+        "kind": "service",
+        "responsibility": "Answers route-code lookups",
+        "description": "Owns the lane to route-code table. Intake is the only caller.",
+        "binding": {
+          "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+          "path": "deploy/kubernetes/catalog.yaml",
+          "symbol": "Deployment/catalog"
+        },
+        "schemaVersion": 1,
+        "id": "rpmPjlm0#luVochY7"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#luVochY7",
+      "placement": {
+        "holder": "rpmPjlm0"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#3p6C8puJ",
+      "kind": "module",
+      "value": {
+        "order": 40,
+        "name": "Route table",
+        "kind": "route",
+        "responsibility": "Lane to route code",
+        "description": "The lookup intake calls before it publishes a job.",
+        "binding": {
+          "repo": "github.com/miklschmidt/archboard-relay-example",
+          "path": "services/catalog/src/routes.ts",
+          "symbol": "routeCode"
+        },
+        "schemaVersion": 1,
+        "id": "rpmPjlm0#3p6C8puJ"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#3p6C8puJ",
+      "placement": {
+        "holder": "rpmPjlm0#luVochY7"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#cFSZY6Iq",
+      "kind": "module",
+      "value": {
+        "order": 50,
+        "name": "Dispatch jobs",
+        "kind": "queue",
+        "responsibility": "Durable handoff from intake to the dispatcher",
+        "description": "The Kubernetes Service dispatch-jobs is the address both sides are configured with.",
+        "binding": {
+          "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+          "path": "deploy/kubernetes/dispatch-jobs.yaml",
+          "symbol": "Service/dispatch-jobs"
+        },
+        "schemaVersion": 1,
+        "id": "rpmPjlm0#cFSZY6Iq"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#cFSZY6Iq",
+      "placement": {
+        "holder": "rpmPjlm0"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#lIzB214r",
+      "kind": "module",
+      "value": {
+        "order": 60,
+        "name": "Queue contract",
+        "kind": "module",
+        "responsibility": "OpenTofu queue contract",
+        "description": "Names the queue, its retention, and its visibility timeout. The Service is the network address of this contract.",
+        "binding": {
+          "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+          "path": "infra/queue.tf",
+          "symbol": "aws_sqs_queue.dispatch_jobs"
+        },
+        "schemaVersion": 1,
+        "id": "rpmPjlm0#lIzB214r"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#lIzB214r",
+      "placement": {
+        "holder": "rpmPjlm0#cFSZY6Iq"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#3ETj23v8",
+      "kind": "module",
+      "value": {
+        "order": 70,
+        "name": "Dispatcher",
+        "kind": "service",
+        "responsibility": "Turns a queued job into a surcharge quote",
+        "description": "Reads the next job, then asks Billing. It does not accept parcels.",
+        "binding": {
+          "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+          "path": "deploy/kubernetes/dispatcher.yaml",
+          "symbol": "Deployment/dispatcher"
+        },
+        "schemaVersion": 1,
+        "id": "rpmPjlm0#3ETj23v8"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#3ETj23v8",
+      "placement": {
+        "holder": "rpmPjlm0"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#LroUdmyc",
+      "kind": "module",
+      "value": {
+        "order": 80,
+        "name": "Take job",
+        "kind": "job",
+        "responsibility": "Receive one dispatch job",
+        "description": "Reads DISPATCH_JOBS_URL and BILLING_URL from the process environment.",
+        "binding": {
+          "repo": "github.com/miklschmidt/archboard-relay-example",
+          "path": "services/dispatcher/src/take-job.ts",
+          "symbol": "takeJob"
+        },
+        "schemaVersion": 1,
+        "id": "rpmPjlm0#LroUdmyc"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#LroUdmyc",
+      "placement": {
+        "holder": "rpmPjlm0#3ETj23v8"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#HwqqtoYA",
+      "kind": "relationship",
+      "value": {
+        "order": 30,
+        "kind": "queue",
+        "label": "receive dispatch job",
+        "emphasis": "hero",
+        "id": "rpmPjlm0#HwqqtoYA",
+        "to": "rpmPjlm0#lIzB214r"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#HwqqtoYA",
+      "placement": {
+        "holder": "rpmPjlm0#LroUdmyc"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#NJrnvyiS",
+      "kind": "relationship",
+      "value": {
+        "order": 40,
+        "kind": "http",
+        "label": "quote the surcharge",
+        "emphasis": "hero",
+        "id": "rpmPjlm0#NJrnvyiS",
+        "to": "rpmPjlm0#ZvzEpjXR"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#NJrnvyiS",
+      "placement": {
+        "holder": "rpmPjlm0#LroUdmyc"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#Rrj64JU6",
+      "kind": "module",
+      "value": {
+        "order": 90,
+        "name": "Billing",
+        "kind": "service",
+        "responsibility": "Quotes a surcharge for a route code",
+        "description": "Only the dispatcher is allowed to call it. Intake must not.",
+        "binding": {
+          "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+          "path": "deploy/kubernetes/billing.yaml",
+          "symbol": "Deployment/billing"
+        },
+        "schemaVersion": 1,
+        "id": "rpmPjlm0#Rrj64JU6"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#Rrj64JU6",
+      "placement": {
+        "holder": "rpmPjlm0"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#ZvzEpjXR",
+      "kind": "module",
+      "value": {
+        "order": 100,
+        "name": "Rate card",
+        "kind": "module",
+        "responsibility": "Surcharge for a route prefix",
+        "description": "The quote the dispatcher attaches to a taken job.",
+        "binding": {
+          "repo": "github.com/miklschmidt/archboard-relay-example",
+          "path": "services/billing/src/quote.ts",
+          "symbol": "quoteSurcharge"
+        },
+        "schemaVersion": 1,
+        "id": "rpmPjlm0#ZvzEpjXR"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#ZvzEpjXR",
+      "placement": {
+        "holder": "rpmPjlm0#Rrj64JU6"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#QEORxyD4",
+      "kind": "collection",
+      "value": {
+        "schemaVersion": 1,
+        "id": "QEORxyD4",
+        "name": "Parcel handoff"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#QOXlb3Au",
+      "kind": "flow",
+      "value": {
+        "id": "rpmPjlm0#QOXlb3Au",
+        "name": "Accept a parcel",
+        "summary": "Intake asks Catalog for a route code, publishes one dispatch job, and the dispatcher quotes a surcharge after it receives that job.",
+        "participants": [
+          "rpmPjlm0#nNCDn0VT",
+          "rpmPjlm0#3p6C8puJ",
+          "rpmPjlm0#lIzB214r",
+          "rpmPjlm0#LroUdmyc",
+          "rpmPjlm0#ZvzEpjXR"
+        ]
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#QOXlb3Au",
+      "placement": {
+        "holder": "rpmPjlm0#QEORxyD4"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#y0ox1vkb",
+      "kind": "step",
+      "value": {
+        "id": "rpmPjlm0#y0ox1vkb",
+        "from": "rpmPjlm0#nNCDn0VT",
+        "to": "rpmPjlm0#3p6C8puJ",
+        "label": "GET route code",
+        "kind": "sync"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#y0ox1vkb",
+      "placement": {
+        "holder": "rpmPjlm0#QOXlb3Au",
+        "before": "rpmPjlm0#mpGxCHyE"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#mpGxCHyE",
+      "kind": "step",
+      "value": {
+        "id": "rpmPjlm0#mpGxCHyE",
+        "from": "rpmPjlm0#3p6C8puJ",
+        "to": "rpmPjlm0#nNCDn0VT",
+        "label": "route code",
+        "kind": "return"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#mpGxCHyE",
+      "placement": {
+        "holder": "rpmPjlm0#QOXlb3Au",
+        "before": "rpmPjlm0#VokiGZ3Q"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#VokiGZ3Q",
+      "kind": "step",
+      "value": {
+        "id": "rpmPjlm0#VokiGZ3Q",
+        "from": "rpmPjlm0#nNCDn0VT",
+        "to": "rpmPjlm0#lIzB214r",
+        "label": "publish dispatch job",
+        "kind": "async"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#VokiGZ3Q",
+      "placement": {
+        "holder": "rpmPjlm0#QOXlb3Au",
+        "before": "rpmPjlm0#yJPpqr67"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#yJPpqr67",
+      "kind": "step",
+      "value": {
+        "id": "rpmPjlm0#yJPpqr67",
+        "from": "rpmPjlm0#LroUdmyc",
+        "to": "rpmPjlm0#lIzB214r",
+        "label": "receive dispatch job",
+        "kind": "async"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#yJPpqr67",
+      "placement": {
+        "holder": "rpmPjlm0#QOXlb3Au",
+        "before": "rpmPjlm0#bATGCqMR"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#bATGCqMR",
+      "kind": "step",
+      "value": {
+        "id": "rpmPjlm0#bATGCqMR",
+        "from": "rpmPjlm0#LroUdmyc",
+        "to": "rpmPjlm0#ZvzEpjXR",
+        "label": "quote the surcharge",
+        "kind": "sync"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#bATGCqMR",
+      "placement": {
+        "holder": "rpmPjlm0#QOXlb3Au",
+        "before": "rpmPjlm0#R6arZd47"
+      }
+    },
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#R6arZd47",
+      "kind": "step",
+      "value": {
+        "id": "rpmPjlm0#R6arZd47",
+        "from": "rpmPjlm0#ZvzEpjXR",
+        "to": "rpmPjlm0#LroUdmyc",
+        "label": "surcharge",
+        "kind": "return"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#R6arZd47",
+      "placement": {
+        "holder": "rpmPjlm0#QOXlb3Au"
+      }
+    }
+  ]
+}
