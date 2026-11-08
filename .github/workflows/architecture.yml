@@ -9,6 +9,18 @@ permissions:
   contents: read
 
 jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Smoke the parcel path
+        run: npm run smoke
+
   check:
     runs-on: ubuntu-latest
     steps:
@@ -24,10 +36,6 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-
-      - name: Smoke the parcel path
-        working-directory: app
-        run: npm run smoke
 
       - name: Check the architecture
         uses: miklschmidt/archboard/actions/check@docs/relay-cli-reference
