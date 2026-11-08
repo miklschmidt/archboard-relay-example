@@ -16,12 +16,12 @@ jobs:
   proposal:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           path: app
           fetch-depth: 0
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: miklschmidt/archboard-relay-example-infra
           path: platform
@@ -33,5 +33,5 @@ jobs:
           working-directory: app
           repos: |
             platform
-          version: 0.1.0
+          version: 0.2.0
           out-of-plan: warn
