@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
 
       - name: Describe the architecture change
-        uses: miklschmidt/archboard/actions/pull-request@ACTION_REF
+        uses: miklschmidt/archboard/actions/pull-request@t3/4b41af73
         with:
           working-directory: app
           repos: |

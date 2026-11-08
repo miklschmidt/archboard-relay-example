@@ -1,31 +1,34 @@
-# Render from the repository root, after `npm ci` and `npm run setup`:
+# The gate in 16 seconds: the check passes, fails on a call that the model does not draw, and
+# passes again. Render it from the repository root, after npm ci and npm run setup:
 #   vhs docs/clips/gate.tape
 Output docs/clips/gate.gif
 
 Set Shell bash
-Set Theme "Catppuccin Mocha"
-Set FontSize 15
-Set Width 1400
-Set Height 760
-Set Padding 16
-Set TypingSpeed 35ms
+Set FontSize 18
+Set Width 1320
+Set Height 800
+Set Padding 28
+Set LineHeight 1.25
+Set TypingSpeed 28ms
+Set CursorBlink false
+Set Theme { "name": "Archboard night", "background": "#16140f", "foreground": "#e6e2d8", "cursor": "#e9c46a", "selection": "#3a352b", "black": "#16140f", "brightBlack": "#8f897d", "red": "#f39a8c", "brightRed": "#f39a8c", "green": "#7fe0a0", "brightGreen": "#7fe0a0", "yellow": "#e9c46a", "brightYellow": "#f0d48a", "blue": "#8fb4f5", "brightBlue": "#8fb4f5", "magenta": "#c4b2f2", "brightMagenta": "#c4b2f2", "cyan": "#86dbc8", "brightCyan": "#86dbc8", "white": "#e6e2d8", "brightWhite": "#f2f0ea" }
 
-# Start the Archboard server and warm the checks before recording.
+# Warm the server, put the pinned CLI on the PATH, and print each command's exit status.
 Hide
-Type "PS1='$ '; npm run check >/dev/null 2>&1; clear" Enter
-Type "PROMPT_COMMAND='echo exit $?'; clear" Enter
+Type `export PATH="$PWD/node_modules/.bin:$PATH"; archboard check >/dev/null 2>&1` Enter
+Type `PROMPT_COMMAND='s=$?; [ -n "$shown" ] && { [ $s -eq 0 ] && c=32 || c=31; printf "\e[${c}mexit $s\e[0m\n\n"; }; shown=1'; PS1=$'\e[33m$\e[0m '; shown=; clear` Enter
 Sleep 6s
 Show
 
-Type "npm run check" Enter
-Sleep 2.5s
+Type "archboard check > /dev/null" Enter
+Sleep 2.4s
 
-Type "npm run gate:break" Enter
-Sleep 1s
-Type "npm run check" Enter
-Sleep 5s
+Type "npm run -s gate:break" Enter
+Sleep 1.2s
+Type "archboard check > /dev/null" Enter
+Sleep 5.5s
 
-Type "npm run gate:restore" Enter
-Sleep 1s
-Type "npm run check" Enter
+Type "npm run -s gate:restore" Enter
+Sleep 1.2s
+Type "archboard check > /dev/null" Enter
 Sleep 3s

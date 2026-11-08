@@ -30,7 +30,7 @@ jobs:
         run: npm run smoke
 
       - name: Check the architecture
-        uses: miklschmidt/archboard/actions/check@ACTION_REF
+        uses: miklschmidt/archboard/actions/check@t3/4b41af73
         with:
           working-directory: app
           repos: |
