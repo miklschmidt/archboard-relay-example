@@ -8,6 +8,10 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: archboard-report-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   proposal:
     runs-on: ubuntu-latest
