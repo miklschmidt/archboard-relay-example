@@ -1,0 +1,15 @@
+{
+  "order": 30,
+  "name": "Catalog",
+  "kind": "service",
+  "responsibility": "Answers route-code lookups",
+  "description": "Owns the lane to route-code table. Intake is the only caller.",
+  "binding": {
+    "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+    "path": "deploy/kubernetes/catalog.yaml",
+    "symbol": "Deployment/catalog"
+  },
+  "schemaVersion": 1,
+  "id": "Wkx6de6D#nk6SNL2X",
+  "outgoing": []
+}

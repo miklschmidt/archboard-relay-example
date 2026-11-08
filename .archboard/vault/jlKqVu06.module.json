@@ -1,0 +1,15 @@
+{
+  "order": 70,
+  "name": "Dispatcher",
+  "kind": "service",
+  "responsibility": "Turns a queued job into a surcharge quote",
+  "description": "Reads the next job, then asks Billing. It does not accept parcels.",
+  "binding": {
+    "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+    "path": "deploy/kubernetes/dispatcher.yaml",
+    "symbol": "Deployment/dispatcher"
+  },
+  "schemaVersion": 1,
+  "id": "Wkx6de6D#jlKqVu06",
+  "outgoing": []
+}

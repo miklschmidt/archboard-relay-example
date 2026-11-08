@@ -1,0 +1,15 @@
+{
+  "order": 10,
+  "name": "Intake",
+  "kind": "service",
+  "responsibility": "Accepts parcel handoffs over HTTP",
+  "description": "The only public HTTP entry. It asks Catalog for a route code, then publishes one dispatch job.",
+  "binding": {
+    "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+    "path": "deploy/kubernetes/intake.yaml",
+    "symbol": "Deployment/intake"
+  },
+  "schemaVersion": 1,
+  "id": "Wkx6de6D#jtylM6aj",
+  "outgoing": []
+}

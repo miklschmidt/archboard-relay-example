@@ -1,0 +1,23 @@
+{
+  "name": "archboard-relay-example",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Harbor Relay: a fictional parcel desk that Archboard checks across an application repository and an infrastructure repository.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "prepare": "test -e .git && git config core.hooksPath .githooks || true",
+    "setup": "node scripts/setup.mjs",
+    "check": "archboard check >/dev/null",
+    "smoke": "node scripts/smoke.ts",
+    "gate:break": "node scripts/gate.mjs break",
+    "gate:restore": "node scripts/gate.mjs restore",
+    "gate:status": "node scripts/gate.mjs status",
+    "gate:self-test": "node scripts/gate-self-test.mjs"
+  },
+  "devDependencies": {
+    "@archboard/cli": "0.1.0"
+  }
+}

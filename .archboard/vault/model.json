@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "Wkx6de6D",
+  "name": "Harbor Relay",
+  "current": {
+    "id": "L5ttt8Gk",
+    "name": "Parcel intake",
+    "summary": "Intake asks catalog for a route code, then publishes a dispatch job.",
+    "predecessor": null,
+    "baseline": "112b9035cae7fb58fa9b8434b01aa26d196b5b83",
+    "createdAt": "2026-11-07T14:46:52.571Z",
+    "adoptedAt": "2026-11-07T14:51:37.198Z",
+    "reason": "Intake, catalog, the dispatch queue, and billing are implemented and bound to this checkout.",
+    "previousCurrent": null
+  },
+  "retiredIds": []
+}

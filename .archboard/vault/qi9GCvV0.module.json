@@ -1,0 +1,15 @@
+{
+  "order": 50,
+  "name": "Dispatch jobs",
+  "kind": "queue",
+  "responsibility": "Durable handoff from intake to the dispatcher",
+  "description": "The Kubernetes Service dispatch-jobs is the address both sides are configured with.",
+  "binding": {
+    "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+    "path": "deploy/kubernetes/dispatch-jobs.yaml",
+    "symbol": "Service/dispatch-jobs"
+  },
+  "schemaVersion": 1,
+  "id": "Wkx6de6D#qi9GCvV0",
+  "outgoing": []
+}

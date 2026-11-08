@@ -1,0 +1,8 @@
+#!/bin/sh
+# Block the push when the architecture check fails.
+# npm install points core.hooksPath here. Skip once with: git push --no-verify
+if [ ! -x node_modules/.bin/archboard ]; then
+  echo "pre-push: archboard is not installed. Run: npm ci" >&2
+  exit 1
+fi
+node_modules/.bin/archboard check >/dev/null

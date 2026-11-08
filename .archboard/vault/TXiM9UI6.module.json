@@ -1,0 +1,15 @@
+{
+  "order": 90,
+  "name": "Billing",
+  "kind": "service",
+  "responsibility": "Quotes a surcharge for a route code",
+  "description": "Only the dispatcher is allowed to call it. Intake must not.",
+  "binding": {
+    "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+    "path": "deploy/kubernetes/billing.yaml",
+    "symbol": "Deployment/billing"
+  },
+  "schemaVersion": 1,
+  "id": "Wkx6de6D#TXiM9UI6",
+  "outgoing": []
+}

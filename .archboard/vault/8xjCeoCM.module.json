@@ -1,0 +1,16 @@
+{
+  "order": 100,
+  "name": "Rate card",
+  "kind": "module",
+  "responsibility": "Surcharge for a route prefix",
+  "description": "The quote the dispatcher attaches to a taken job.",
+  "binding": {
+    "repo": "github.com/miklschmidt/archboard-relay-example",
+    "path": "services/billing/src/quote.ts",
+    "symbol": "quoteSurcharge"
+  },
+  "schemaVersion": 1,
+  "id": "Wkx6de6D#8xjCeoCM",
+  "parent": "Wkx6de6D#TXiM9UI6",
+  "outgoing": []
+}
