@@ -1,0 +1,33 @@
+{
+  "order": 20,
+  "name": "Accept parcel",
+  "kind": "route",
+  "responsibility": "POST /parcels",
+  "description": "Reads CATALOG_URL and DISPATCH_JOBS_URL from the process environment and calls those addresses.",
+  "binding": {
+    "repo": "github.com/miklschmidt/archboard-relay-example",
+    "path": "services/intake/src/accept.ts",
+    "symbol": "acceptParcel"
+  },
+  "schemaVersion": 1,
+  "id": "rpmPjlm0#nNCDn0VT",
+  "parent": "rpmPjlm0#USqYWEmm",
+  "outgoing": [
+    {
+      "order": 10,
+      "kind": "http",
+      "label": "GET route code",
+      "emphasis": "hero",
+      "id": "rpmPjlm0#ty0qoZOh",
+      "to": "rpmPjlm0#3p6C8puJ"
+    },
+    {
+      "order": 20,
+      "kind": "queue",
+      "label": "publish dispatch job",
+      "emphasis": "hero",
+      "id": "rpmPjlm0#g1Qgyytk",
+      "to": "rpmPjlm0#lIzB214r"
+    }
+  ]
+}

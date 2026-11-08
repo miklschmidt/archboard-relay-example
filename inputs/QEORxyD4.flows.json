@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "id": "QEORxyD4",
+  "name": "Parcel handoff",
+  "flows": [
+    {
+      "id": "rpmPjlm0#QOXlb3Au",
+      "name": "Accept a parcel",
+      "summary": "Intake asks Catalog for a route code, publishes one dispatch job, and the dispatcher quotes a surcharge after it receives that job.",
+      "participants": [
+        "rpmPjlm0#nNCDn0VT",
+        "rpmPjlm0#3p6C8puJ",
+        "rpmPjlm0#lIzB214r",
+        "rpmPjlm0#LroUdmyc",
+        "rpmPjlm0#ZvzEpjXR"
+      ],
+      "steps": [
+        {
+          "id": "rpmPjlm0#y0ox1vkb",
+          "from": "rpmPjlm0#nNCDn0VT",
+          "to": "rpmPjlm0#3p6C8puJ",
+          "label": "GET route code",
+          "kind": "sync"
+        },
+        {
+          "id": "rpmPjlm0#mpGxCHyE",
+          "from": "rpmPjlm0#3p6C8puJ",
+          "to": "rpmPjlm0#nNCDn0VT",
+          "label": "route code",
+          "kind": "return"
+        },
+        {
+          "id": "rpmPjlm0#VokiGZ3Q",
+          "from": "rpmPjlm0#nNCDn0VT",
+          "to": "rpmPjlm0#lIzB214r",
+          "label": "publish dispatch job",
+          "kind": "async"
+        },
+        {
+          "id": "rpmPjlm0#yJPpqr67",
+          "from": "rpmPjlm0#LroUdmyc",
+          "to": "rpmPjlm0#lIzB214r",
+          "label": "receive dispatch job",
+          "kind": "async"
+        },
+        {
+          "id": "rpmPjlm0#bATGCqMR",
+          "from": "rpmPjlm0#LroUdmyc",
+          "to": "rpmPjlm0#ZvzEpjXR",
+          "label": "quote the surcharge",
+          "kind": "sync"
+        },
+        {
+          "id": "rpmPjlm0#R6arZd47",
+          "from": "rpmPjlm0#ZvzEpjXR",
+          "to": "rpmPjlm0#LroUdmyc",
+          "label": "surcharge",
+          "kind": "return"
+        }
+      ]
+    }
+  ]
+}

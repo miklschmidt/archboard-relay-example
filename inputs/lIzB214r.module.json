@@ -1,0 +1,16 @@
+{
+  "order": 60,
+  "name": "Queue contract",
+  "kind": "module",
+  "responsibility": "OpenTofu queue contract",
+  "description": "Names the queue, its retention, and its visibility timeout. The Service is the network address of this contract.",
+  "binding": {
+    "repo": "github.com/miklschmidt/archboard-relay-example-infra",
+    "path": "infra/queue.tf",
+    "symbol": "aws_sqs_queue.dispatch_jobs"
+  },
+  "schemaVersion": 1,
+  "id": "rpmPjlm0#lIzB214r",
+  "parent": "rpmPjlm0#cFSZY6Iq",
+  "outgoing": []
+}

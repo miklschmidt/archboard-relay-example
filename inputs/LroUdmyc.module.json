@@ -1,0 +1,33 @@
+{
+  "order": 80,
+  "name": "Take job",
+  "kind": "job",
+  "responsibility": "Receive one dispatch job",
+  "description": "Reads DISPATCH_JOBS_URL and BILLING_URL from the process environment.",
+  "binding": {
+    "repo": "github.com/miklschmidt/archboard-relay-example",
+    "path": "services/dispatcher/src/take-job.ts",
+    "symbol": "takeJob"
+  },
+  "schemaVersion": 1,
+  "id": "rpmPjlm0#LroUdmyc",
+  "parent": "rpmPjlm0#3ETj23v8",
+  "outgoing": [
+    {
+      "order": 30,
+      "kind": "queue",
+      "label": "receive dispatch job",
+      "emphasis": "hero",
+      "id": "rpmPjlm0#HwqqtoYA",
+      "to": "rpmPjlm0#lIzB214r"
+    },
+    {
+      "order": 40,
+      "kind": "http",
+      "label": "quote the surcharge",
+      "emphasis": "hero",
+      "id": "rpmPjlm0#NJrnvyiS",
+      "to": "rpmPjlm0#ZvzEpjXR"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "order": 40,
+  "name": "Route table",
+  "kind": "route",
+  "responsibility": "Lane to route code",
+  "description": "The lookup intake calls before it publishes a job.",
+  "binding": {
+    "repo": "github.com/miklschmidt/archboard-relay-example",
+    "path": "services/catalog/src/routes.ts",
+    "symbol": "routeCode"
+  },
+  "schemaVersion": 1,
+  "id": "rpmPjlm0#3p6C8puJ",
+  "parent": "rpmPjlm0#luVochY7",
+  "outgoing": []
+}
