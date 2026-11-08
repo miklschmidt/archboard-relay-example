@@ -1,0 +1,33 @@
+name: pull-request
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  proposal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: app
+          fetch-depth: 0
+
+      - uses: actions/checkout@v4
+        with:
+          repository: miklschmidt/archboard-relay-example-infra
+          path: platform
+          fetch-depth: 0
+
+      - name: Describe the architecture change
+        uses: miklschmidt/archboard/actions/pull-request@ACTION_REF
+        with:
+          working-directory: app
+          repos: |
+            platform
+          version: 0.1.0
+          out-of-plan: warn
