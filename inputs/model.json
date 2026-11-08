@@ -1,17 +1,1 @@
-{
-  "schemaVersion": 1,
-  "id": "rpmPjlm0",
-  "name": "Harbor Relay",
-  "current": {
-    "id": "BV6Uc2mD",
-    "name": "Parcel intake",
-    "summary": "Intake asks catalog for a route code, then publishes a dispatch job.",
-    "predecessor": null,
-    "baseline": "d559ea68f5dbe3f171422eed852af2fdeb7a1cc4",
-    "createdAt": "2026-11-08T11:45:53.439Z",
-    "adoptedAt": "2026-11-08T11:46:13.501Z",
-    "reason": "Intake, catalog, the dispatch queue, and billing are implemented and bound to the application and infrastructure checkouts.",
-    "previousCurrent": null
-  },
-  "retiredIds": []
-}
+{"schemaVersion":1,"id":"rpmPjlm0","name":"Harbor Relay","current":{"id":"BV6Uc2mD","name":"Parcel intake","summary":"Intake asks catalog for a route code, then publishes a dispatch job.","predecessor":null,"baseline":"d559ea68f5dbe3f171422eed852af2fdeb7a1cc4","createdAt":"2026-11-08T11:45:53.439Z","adoptedAt":"2026-11-08T11:46:13.501Z","reason":"Intake, catalog, the dispatch queue, and billing are implemented and bound to the application and infrastructure checkouts.","previousCurrent":null},"retiredIds":[]}
