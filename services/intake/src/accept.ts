@@ -47,6 +47,10 @@ export async function acceptParcel(input: ParcelRequest, deps: IntakeDeps): Prom
     throw new Error("DISPATCH_JOBS_URL is not set");
   }
 
+  // gate:break start
+  const billingUrl = trimUrl(process.env.BILLING_URL ?? "");
+  await deps.fetch(`${billingUrl}/surcharges?routeCode=${encodeURIComponent(routeBody.routeCode)}`);
+  // gate:break end
   const queued = await deps.fetch(`${jobsUrl}/jobs`, {
     method: "POST",
     headers: { "content-type": "application/json" },
