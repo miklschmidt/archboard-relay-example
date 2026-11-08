@@ -17,7 +17,9 @@ The system has four services:
 The code is here. The Kubernetes manifests and the OpenTofu queue module are in
 [archboard-relay-example-infra](https://github.com/miklschmidt/archboard-relay-example-infra),
 the way a platform team often keeps them apart from the services.
-The architecture model lives in this repository, in `.archboard/vault`. It binds each module to a file in one of the two:
+The architecture model lives in this repository, in `.archboard/vault`. Its history, with the proposal "Parcel intake",
+is on the branch `archboard-history` of this repository. A fresh clone fetches it with the other branches
+(`archboard model proposals` lists it). It binds each module to a file in one of the two:
 
 | Module | What it does | Bound to | In |
 | --- | --- | --- | --- |
@@ -97,7 +99,7 @@ npm run check
 `process.env.BILLING_URL` and calls it. The infrastructure repository is not touched. The check exits 1 with a warning:
 
 ```text
-warning: RELATIONSHIP_UNDRAWN: 8xjCeoCM.module.json: module "Rate card": The code of "Accept parcel" reaches "Rate card". No relationship joins these modules. ...
+warning: RELATIONSHIP_UNDRAWN: ZvzEpjXR.module.json: module "Rate card": The code of "Accept parcel" reaches "Rate card". No relationship joins these modules. ...
   configured-path, resolved, services/intake/src/accept.ts:51
   configured-path, resolved, deploy/kubernetes/peer-endpoints.yaml:13
 ```
@@ -136,9 +138,9 @@ in the `main` branch of the infrastructure repository.
 
 ## CI and the pre-push hook
 
-- `.github/workflows/architecture.yml` runs on every pull request and on pushes to `main`. It checks out this repository
-  into `app/` and the infrastructure repository into `platform/`, runs the smoke test, then runs the Archboard check
-  action with `fail-on: warning`.
+- `.github/workflows/architecture.yml` runs on every pull request and on pushes to `main`. Two jobs run apart, so a
+  failing smoke test never stops the check. `smoke` runs the smoke test. `check` checks out this repository into `app/`
+  and the infrastructure repository into `platform/`, then runs the Archboard check action with `fail-on: warning`.
 - `.github/workflows/pull-request.yml` uses the Archboard pull-request action to describe the architecture change of a pull request.
 - `.githooks/pre-push` runs the same `archboard check`. When it exits 1, the hook blocks the push.
   `npm install` sets `core.hooksPath` to `.githooks` inside a Git checkout. To skip the hook once, use `git push --no-verify`.

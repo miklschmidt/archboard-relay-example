@@ -10,24 +10,24 @@
     "symbol": "acceptParcel"
   },
   "schemaVersion": 1,
-  "id": "Wkx6de6D#8oQ6pC9L",
-  "parent": "Wkx6de6D#jtylM6aj",
+  "id": "rpmPjlm0#nNCDn0VT",
+  "parent": "rpmPjlm0#USqYWEmm",
   "outgoing": [
     {
       "order": 10,
       "kind": "http",
       "label": "GET route code",
       "emphasis": "hero",
-      "id": "Wkx6de6D#i1Xbsnon",
-      "to": "Wkx6de6D#swUnE1Sz"
+      "id": "rpmPjlm0#ty0qoZOh",
+      "to": "rpmPjlm0#3p6C8puJ"
     },
     {
       "order": 20,
       "kind": "queue",
       "label": "publish dispatch job",
       "emphasis": "hero",
-      "id": "Wkx6de6D#sAHyQ1UN",
-      "to": "Wkx6de6D#m6R5USxY"
+      "id": "rpmPjlm0#g1Qgyytk",
+      "to": "rpmPjlm0#lIzB214r"
     }
   ]
 }
