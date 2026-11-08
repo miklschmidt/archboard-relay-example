@@ -1,0 +1,33 @@
+{
+  "id": "zu80HRHt",
+  "name": "Intake quotes the surcharge",
+  "summary": "Intake asks Billing for the surcharge while it accepts a parcel, so the sender sees the price before the job is queued.",
+  "schemaVersion": 1,
+  "lifecycle": "draft",
+  "createdAt": "2026-11-08T11:49:31.144Z",
+  "predecessor": "BV6Uc2mD",
+  "predecessorRevision": "bf76842a03b9f254ab3ab0049a4ae4475d5b045289de82fca19c408f929fa428",
+  "baseline": "f6a5430a82bc853f79c1fe14b7ba2285c3152ae7",
+  "changes": [
+    {
+      "type": "add",
+      "subject": "rpmPjlm0#FqTtZg6w",
+      "kind": "relationship",
+      "value": {
+        "order": 30,
+        "kind": "http",
+        "label": "quote the surcharge at intake",
+        "emphasis": "normal",
+        "id": "rpmPjlm0#FqTtZg6w",
+        "to": "rpmPjlm0#ZvzEpjXR"
+      }
+    },
+    {
+      "type": "place",
+      "subject": "rpmPjlm0#FqTtZg6w",
+      "placement": {
+        "holder": "rpmPjlm0#nNCDn0VT"
+      }
+    }
+  ]
+}
