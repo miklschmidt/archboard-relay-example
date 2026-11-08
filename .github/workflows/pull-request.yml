@@ -12,12 +12,12 @@ jobs:
   proposal:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           path: app
           fetch-depth: 0
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: miklschmidt/archboard-relay-example-infra
           path: platform
