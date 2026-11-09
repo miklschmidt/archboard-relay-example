@@ -38,10 +38,10 @@ jobs:
           node-version: 22
 
       - name: Check the architecture
-        uses: miklschmidt/archboard/actions/check@docs/relay-cli-reference
+        uses: miklschmidt/archboard/actions/check@6b90eb8f2aa343d69c79c9c47bbc6893194467fa # v0.3.0
         with:
           working-directory: app
           repos: |
             platform
-          version: 0.2.0
+          version: 0.3.0
           fail-on: warning

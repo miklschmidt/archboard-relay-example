@@ -28,10 +28,10 @@ jobs:
           fetch-depth: 0
 
       - name: Describe the architecture change
-        uses: miklschmidt/archboard/actions/pull-request@docs/relay-cli-reference
+        uses: miklschmidt/archboard/actions/pull-request@6b90eb8f2aa343d69c79c9c47bbc6893194467fa # v0.3.0
         with:
           working-directory: app
           repos: |
             platform
-          version: 0.2.0
+          version: 0.3.0
           out-of-plan: warn
