@@ -18,6 +18,6 @@
     "gate:self-test": "node scripts/gate-self-test.mjs"
   },
   "devDependencies": {
-    "@archboard/cli": "0.1.0"
+    "@archboard/cli": "0.3.0"
   }
 }

@@ -75,7 +75,7 @@ npm run setup
 npm run check
 ```
 
-`npm ci` installs the pinned `@archboard/cli@0.1.0`. This repository does not build Archboard.
+`npm ci` installs the pinned `@archboard/cli@0.3.0`. This repository does not build Archboard.
 `npm run setup` registers both checkouts with Archboard. It looks for the infrastructure checkout in
 `../archboard-relay-example-infra`. If that directory is missing, it clones the repository from GitHub.
 Set `RELAY_INFRA_DIR` to use another directory.
