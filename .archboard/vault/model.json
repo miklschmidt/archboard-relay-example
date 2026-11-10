@@ -3,15 +3,15 @@
   "id": "rpmPjlm0",
   "name": "Harbor Relay",
   "current": {
-    "id": "BV6Uc2mD",
-    "name": "Parcel intake",
-    "summary": "Intake asks catalog for a route code, then publishes a dispatch job.",
-    "predecessor": null,
-    "baseline": "d559ea68f5dbe3f171422eed852af2fdeb7a1cc4",
-    "createdAt": "2026-11-08T11:45:53.439Z",
-    "adoptedAt": "2026-11-08T11:46:13.501Z",
-    "reason": "Intake, catalog, the dispatch queue, and billing are implemented and bound to the application and infrastructure checkouts.",
-    "previousCurrent": null
+    "id": "zu80HRHt",
+    "name": "Intake quotes the surcharge",
+    "summary": "Intake asks Billing for the surcharge while it accepts a parcel, so the sender sees the price before the job is queued.",
+    "predecessor": "BV6Uc2mD",
+    "baseline": "f6a5430a82bc853f79c1fe14b7ba2285c3152ae7",
+    "createdAt": "2026-11-08T11:49:31.144Z",
+    "adoptedAt": "2026-11-08T11:49:38.593Z",
+    "reason": "Intake quotes the surcharge while it accepts a parcel.",
+    "previousCurrent": "BV6Uc2mD"
   },
   "retiredIds": []
 }
