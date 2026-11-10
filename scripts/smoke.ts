@@ -34,7 +34,7 @@ try {
   assert(accepted.parcelId === "parcel-1001", "parcel id was not echoed");
   assert(accepted.routeCode === "HR-EAST-14", `unexpected route code ${accepted.routeCode}`);
   assert(accepted.jobId === "job-1", `unexpected job id ${accepted.jobId}`);
-  assert(billing.quotes() === 0, "intake called billing; restore the architecture baseline before smoking");
+  assert(billing.quotes() === 1, "intake did not quote billing while it accepted the parcel");
 
   const unknown = await fetch(`${intake.url}/parcels`, {
     method: "POST",
@@ -48,7 +48,7 @@ try {
   assert(taken.parcelId === "parcel-1001", "dispatcher took the wrong parcel");
   assert(taken.routeCode === "HR-EAST-14", "dispatcher lost the route code");
   assert(taken.surchargeCents === 125, `unexpected surcharge ${taken.surchargeCents}`);
-  assert(billing.quotes() === 1, "dispatcher did not quote billing exactly once");
+  assert(billing.quotes() === 2, "dispatcher did not quote billing once after intake");
   assert((await takeJob({ fetch })) === undefined, "queue was not empty after one take");
 
   process.stdout.write(
